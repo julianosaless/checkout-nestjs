@@ -5,20 +5,19 @@ export abstract class BaseRepository<T>  {
   }
 
   async findAll(): Promise<T[]> {
-    const entities = await this.repository.find();
-    return entities;
+    return await this.repository.find();
   }
 
   async find(id: string): Promise<T> {
-    const entity = await this.repository.findOne(id);
-    return entity;
+    return await this.repository.findOne(id);
   }
 
-  abstract where(entity: T): Promise<T>;
+  async findOne(entity: T): Promise<T> {
+    return await this.repository.findOne(entity);
+  }
 
   async insert(entity: T): Promise<T> {
-    await this.repository.save(entity);
-    return entity;
+    return await this.repository.save(entity);
   }
 
   async update(id: string, entity: T): Promise<T> {
@@ -27,7 +26,7 @@ export abstract class BaseRepository<T>  {
   }
 
   async delete(id: string): Promise<T> {
-    const toDelete = await this.repository.findOne(id);
+    const toDelete = await this.find(id);
     await this.repository.delete(id);
     return toDelete;
   }
