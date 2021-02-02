@@ -1,7 +1,7 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class EntityBase {
-  @Column()
+  @PrimaryGeneratedColumn('uuid')
   public id: string;
 }
