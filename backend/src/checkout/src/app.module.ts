@@ -3,6 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 
 import { InfrastructureModule } from './infrastructure/infrastructure.module';
 import { DomainModule } from './domain/domain.module';
+import { ApplicationModule } from './application/application.module';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -16,6 +17,8 @@ import { DomainModule } from './domain/domain.module';
     logging: true,
   }),
     InfrastructureModule,
-    DomainModule]
+    DomainModule,
+    ApplicationModule
+  ]
 })
 export class AppModule { }
