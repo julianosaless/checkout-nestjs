@@ -1,7 +1,7 @@
-import { Entity } from 'src/common/domain/entity';
+import { EntityBase } from 'src/common/domain/entity-base';
 import { PromotionType } from './promotion-type';
 
-export class Promotion extends Entity {
+export class Promotion extends EntityBase {
   readonly name: string;
   readonly minQuantity: number;
   readonly promotionType: PromotionType;

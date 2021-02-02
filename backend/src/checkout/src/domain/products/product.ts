@@ -1,9 +1,15 @@
-import { IAggregateRoot } from 'src/common/domain/aggregate-root.interface';
-import { Entity } from 'src/common/domain/entity';
+import { Entity, Column } from 'typeorm';
 
-export class Product extends Entity implements IAggregateRoot {
+import { IAggregateRoot } from 'src/common/domain/aggregate-root.interface';
+import { EntityBase } from 'src/common/domain/entity-base';
+
+@Entity('products')
+export class Product extends EntityBase implements IAggregateRoot {
+  @Column()
   readonly name: string;
+  @Column()
   readonly price: number;
+
 
   constructor(name: string, price: number) {
     super();
