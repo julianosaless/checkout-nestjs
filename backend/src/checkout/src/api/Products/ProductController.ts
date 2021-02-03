@@ -3,7 +3,7 @@ import { get } from "http";
 import { ProductDto } from "src/application/products/product-dto";
 
 import { ProductService } from "src/application/products/product-service";
-import { PromotionDto } from "src/application/promotion-dto";
+import { PromotionDto } from "src/application/products/promotion-dto";
 
 @Controller('/api/products')
 export class ProductController {
