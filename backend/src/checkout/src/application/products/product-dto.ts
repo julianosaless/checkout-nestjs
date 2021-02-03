@@ -9,5 +9,6 @@ export class ProductDto {
     this.name = name;
     this.price = price;
     this.promotionId = promotionId;
+    this.promomotion = promotion;
   }
 }

@@ -1,4 +1,4 @@
-import { Entity, Column } from 'typeorm';
+import { Entity, Column, OneToOne, JoinColumn, OneToMany, ManyToOne } from 'typeorm';
 
 import { EntityBase } from 'src/common/domain/entity-base';
 import { IAggregateRoot } from 'src/common/domain/aggregate-root.interface';
@@ -11,9 +11,12 @@ export class Product extends EntityBase implements IAggregateRoot {
   readonly name: string;
   @Column()
   readonly price: number;
-  @Column()
+
+  @Column({ nullable: true })
   readonly promotionId: string;
 
+  @ManyToOne(type => Promotion, { nullable: true })
+  @JoinColumn()
   promotion: Promotion;
 
   constructor(name: string, price: number) {
