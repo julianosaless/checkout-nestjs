@@ -4,6 +4,9 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { InfrastructureModule } from './infrastructure/infrastructure.module';
 import { DomainModule } from './domain/domain.module';
 import { ApplicationModule } from './application/application.module';
+import { ApiModule } from './api/ApiModule';
+import { Product } from './domain/products/product';
+import { Promotion } from './domain/products/promotion';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -14,11 +17,13 @@ import { ApplicationModule } from './application/application.module';
     username: process.env.TYPEORM_USERNAME,
     password: process.env.TYPEORM_PASSWORD,
     synchronize: true,
-    logging: true
+    logging: true,
+    entities: [Product, Promotion]
   }),
     InfrastructureModule,
     DomainModule,
-    ApplicationModule
+    ApplicationModule,
+    ApiModule
   ]
 })
 export class AppModule { }
