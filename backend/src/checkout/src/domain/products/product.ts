@@ -13,7 +13,7 @@ export class Product extends EntityBase implements IAggregateRoot {
   readonly price: number;
 
   @Column({ nullable: true })
-  readonly promotionId: string;
+  promotionId: string;
 
   @ManyToOne(type => Promotion, { nullable: true })
   @JoinColumn()
@@ -25,8 +25,8 @@ export class Product extends EntityBase implements IAggregateRoot {
     this.price = price;
   }
 
-  public addPromotion(name: string, minQuantity: number, promotionType: PromotionType): Product {
-    this.promotion = new Promotion(name, minQuantity, promotionType);
+  public addPromotion(promotionId: string): Product {
+    this.promotionId = promotionId;
     return this;
   }
 
