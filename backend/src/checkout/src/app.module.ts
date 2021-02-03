@@ -14,7 +14,7 @@ import { ApplicationModule } from './application/application.module';
     username: process.env.TYPEORM_USERNAME,
     password: process.env.TYPEORM_PASSWORD,
     synchronize: true,
-    logging: true,
+    logging: true
   }),
     InfrastructureModule,
     DomainModule,

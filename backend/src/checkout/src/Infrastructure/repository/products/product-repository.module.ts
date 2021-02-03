@@ -1,8 +1,12 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
 
-import { ProductRepository } from './product-repository';
+import { Product } from 'src/domain/products/product';
+import { ProductRepositoryProvider } from './product-repository-provider';
 
 @Module({
-  exports: [ProductRepository],
+  imports: [TypeOrmModule.forFeature([Product])],
+  providers: [ProductRepositoryProvider],
+  exports: [ProductRepositoryProvider],
 })
 export class ProductRepositoryModule { }

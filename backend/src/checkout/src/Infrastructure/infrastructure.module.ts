@@ -1,13 +1,8 @@
 import { Module } from '@nestjs/common';
-
-import { RepositoryModule } from './repository/repository-module';
+import { ProductRepositoryModule } from './repository/products/product-repository.module';
 
 @Module({
-  imports: [
-    RepositoryModule,
-  ],
-  exports: [
-    RepositoryModule,
-  ],
+  imports: [ProductRepositoryModule],
+  exports: [ProductRepositoryModule],
 })
 export class InfrastructureModule { }
