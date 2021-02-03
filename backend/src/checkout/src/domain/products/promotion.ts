@@ -3,7 +3,7 @@ import { Column, Entity } from 'typeorm';
 import { EntityBase } from 'src/common/domain/entity-base';
 import { PromotionType } from './promotion-type';
 
-@Entity('promotion')
+@Entity('promotions')
 export class Promotion extends EntityBase {
   @Column()
   readonly name: string;
