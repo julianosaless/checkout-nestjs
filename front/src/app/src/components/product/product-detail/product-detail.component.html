@@ -1,0 +1,49 @@
+<br />
+<div class="container">
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="product-image">
+        <div class="view hm-zoom z-depth-2" style="cursor: pointer;">
+          <img
+            src="/assets/img/default-image.jpg"
+            [alt]="product.name"
+            width="100%"
+            class="img-fluid rounded"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-8">
+      <div class="product-detail">
+        <h5 class="product-head">Product Details</h5>
+        <table class="table" cellspacing="0" style="max-height: 28px;">
+          <tbody>
+            <tr>
+              <th scope="row">Product Name</th>
+              <td>{{ product.name }}</td>
+            </tr>
+            <tr>
+              <th scope="row">Promotion</th>
+              <td>
+              <select [(ngModel)]="product.promotionId" class="form-control">
+                <option value="">Promotion..</option>
+                <option *ngFor="let promotion of promotions" [value]="promotion.id">
+                  {{promotion?.name}}
+                </option>
+              </select>
+              </td>
+            </tr>
+            <tr>
+              <th scope="row"></th>
+              <td class="col-sm-1 col-md-1">
+                <button type="button" class="btn btn-success"  (click)="save(product)">
+                  <i class="fa fa-floppy-o display-5" aria-hidden="true"></i>
+                </button>
+                </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
