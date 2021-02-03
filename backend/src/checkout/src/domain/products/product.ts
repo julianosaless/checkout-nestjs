@@ -13,7 +13,7 @@ export class Product extends EntityBase implements IAggregateRoot {
   readonly price: number;
   @Column()
   readonly promotionId: string;
-  @Column()
+
   promotion: Promotion;
 
   constructor(name: string, price: number) {
