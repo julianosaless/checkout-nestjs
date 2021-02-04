@@ -11,11 +11,11 @@ import { Promotion } from './domain/products/promotion';
 @Module({
   imports: [TypeOrmModule.forRoot({
     type: 'mysql',
-    host: process.env.TYPEORM_HOST,
-    port: parseInt(process.env.TYPEORM_PORT),
-    database: process.env.TYPEORM_DATABASE,
-    username: process.env.TYPEORM_USERNAME,
-    password: process.env.TYPEORM_PASSWORD,
+    host: 'localhost',
+    port: 3306,
+    database: 'checkout',
+    username: 'root',
+    password: 'checkout',
     synchronize: true,
     logging: true,
     entities: [Product, Promotion]

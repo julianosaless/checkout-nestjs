@@ -3,7 +3,7 @@ import { Inject, Injectable } from "@nestjs/common";
 import { ProductRepository } from 'src/infrastructure/repository/products/product-repository';
 import { Product } from "src/domain/products/product";
 import { ProductDto } from "./product-dto";
-import { PromotionDto } from "../promotion-dto";
+import { PromotionDto } from "./promotion-dto";
 
 const ProductRepo = () => Inject('ProductRepo');
 
