@@ -10,8 +10,7 @@ const ProductRepo = () => Inject('ProductRepo');
 @Injectable()
 export class ProductService {
 
-  constructor(
-    @ProductRepo() private readonly repository: ProductRepository,
+  constructor(@ProductRepo() private readonly repository: ProductRepository,
   ) { }
 
   public async get(id: string): Promise<ProductDto> {

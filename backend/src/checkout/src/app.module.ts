@@ -7,6 +7,8 @@ import { ApplicationModule } from './application/application.module';
 import { ApiModule } from './api/ApiModule';
 import { Product } from './domain/products/product';
 import { Promotion } from './domain/products/promotion';
+import { CartProduct } from './domain/carts/cart-product';
+import { Cart } from './domain/carts/cart';
 
 @Module({
   imports: [TypeOrmModule.forRoot({
@@ -18,7 +20,7 @@ import { Promotion } from './domain/products/promotion';
     password: 'checkout',
     synchronize: true,
     logging: true,
-    entities: [Product, Promotion]
+    entities: [Product, Promotion, Cart, CartProduct]
   }),
     InfrastructureModule,
     DomainModule,

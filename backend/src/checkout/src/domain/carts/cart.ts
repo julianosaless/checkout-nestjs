@@ -1,10 +1,16 @@
 import { IAggregateRoot } from "src/common/domain/aggregate-root.interface";
 import { EntityBase } from "src/common/domain/entity-base";
+import { Column, Entity, OneToMany } from "typeorm";
 import { CartProduct } from "./cart-product";
 
+@Entity("carts")
 export class Cart extends EntityBase implements IAggregateRoot {
+
+  @Column()
   readonly name: string;
-  private cartProducts: CartProduct[] = [];
+
+  @OneToMany(type => CartProduct, cartProduct => cartProduct.cart)
+  private cartProducts: CartProduct[];
 
   public get products(): CartProduct[] {
     return this.cartProducts;
