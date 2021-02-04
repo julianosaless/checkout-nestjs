@@ -1,5 +1,4 @@
 export class CartProductDto {
-
   readonly productId: string;
   readonly productName: string;
   readonly quantity: number;

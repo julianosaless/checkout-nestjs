@@ -1,4 +1,6 @@
-import { Controller, Get, HttpStatus, Put, Param, HttpCode } from "@nestjs/common";
+import { Controller, Get, HttpStatus, Put, Param, HttpCode, Delete, Post, Body } from "@nestjs/common";
+import { CartDto } from "src/application/carts/cart-dto";
+import { CartService } from "src/application/carts/cart-service";
 import { ProductDto } from "src/application/products/product-dto";
 
 import { ProductService } from "src/application/products/product-service";
@@ -7,13 +9,20 @@ import { PromotionDto } from "src/application/products/promotion-dto";
 @Controller('/api/products')
 export class ProductController {
 
-  constructor(private service: ProductService) { }
+  constructor(private service: ProductService, private cartService: CartService) { }
 
   @Get("promotions")
   @HttpCode(200)
   public async getAllPromotions(): Promise<PromotionDto[]> {
     return await this.service
       .getAllPromotions();
+  }
+
+  @Get("Carts")
+  @HttpCode(201)
+  public async getAllCart(): Promise<CartDto> {
+    return await this.cartService
+      .getCurrentCart();
   }
 
   @Get(':id')
@@ -28,6 +37,18 @@ export class ProductController {
   public async getAll(): Promise<ProductDto[]> {
     return await this.service
       .getAll();
+  }
+
+  @Delete(':productId/carts')
+  @HttpCode(204)
+  async delete(@Param('productId') id: string): Promise<void> {
+    return await this.cartService.removeProduct(id);
+  }
+
+  @Post()
+  @HttpCode(201)
+  async post(@Body() cart: CartDto): Promise<CartDto> {
+    return await this.cartService.add(cart.products)
   }
 
 }
