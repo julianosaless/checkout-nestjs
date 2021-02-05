@@ -1,6 +1,7 @@
 import { PromotionDto } from "../products/promotion-dto";
 
 export class CartProductDto {
+  readonly id: string;
   readonly productId: string;
   readonly productName: string;
   readonly quantity: number;
@@ -8,7 +9,8 @@ export class CartProductDto {
   readonly total: number;
   promotion: PromotionDto;
 
-  constructor(productId: string, productName: string, quantity: number, price: number, total: number) {
+  constructor(id: string, productId: string, productName: string, quantity: number, price: number, total: number) {
+    this.id = id;
     this.productId = productId;
     this.productName = productName;
     this.quantity = quantity;

@@ -45,7 +45,7 @@ export class ProductService {
   }
 
   removeCartProduct(product: CartProduct): Observable<Cart> {
-    return this.http.delete<Cart>(`${this.url}/${product.productId}/carts`);
+    return this.http.delete<Cart>(`${this.url}/${product.id}/carts`);
   }
 
   changePromotion(productId: string, promotionId: string): Observable<Product> {

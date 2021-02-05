@@ -50,6 +50,7 @@ export class CartProductsComponent implements OnInit {
       )
       .subscribe(
         cart => {
+
           this.cart = cart;
         },
         error => console.log(error));

@@ -1,6 +1,7 @@
 import Promotion from './promotion';
 
 export default class CartProduct {
+  id: string = '';
   productId: string = '';
   productName: string = '';
   quantity: number = 0;
