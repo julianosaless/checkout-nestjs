@@ -11,7 +11,7 @@ export class CartProduct extends EntityBase {
   @ManyToOne(type => Cart, cart => cart.products)
   readonly cart: Cart;
   @Column()
-  readonly quantity: number;
+  quantity: number;
   @Column()
   readonly productId: string;
 
@@ -33,10 +33,10 @@ export class CartProduct extends EntityBase {
   }
 
   public changeQuantity(quantity: number): void {
-    quantity += quantity;
+    this.quantity += quantity;
 
-    if (quantity <= 0) {
-      quantity = 0;
+    if (this.quantity <= 0) {
+      this.quantity = 0;
     }
   }
 

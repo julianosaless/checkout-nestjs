@@ -12,6 +12,8 @@ export class Cart extends EntityBase implements IAggregateRoot {
   @OneToMany(type => CartProduct, cartProduct => cartProduct.cart)
   private cartProducts: CartProduct[];
 
+  productToDeletes: CartProduct[] = [];
+
   public get products(): CartProduct[] {
     if (!this.cartProducts) {
       this.cartProducts = [];
@@ -35,12 +37,15 @@ export class Cart extends EntityBase implements IAggregateRoot {
   }
 
   public remove(productId: string): void {
+    const currentProduct = this.cartProducts.filter((cartProduct) => cartProduct.productId === productId)[0];
+
     const productIndex = this.cartProducts.findIndex((product) => product.productId === productId);
-    this.cartProducts.slice(0, productIndex)
+    this.cartProducts = this.cartProducts.slice(0, productIndex);
+    this.productToDeletes.push(currentProduct);
   }
 
   private mergeProduct(cartProduct: CartProduct): void {
-    const products = this.products
+    const products = this.cartProducts
       .filter((product) => product.productId === cartProduct.productId);
 
     if (products && products.length > 0) {

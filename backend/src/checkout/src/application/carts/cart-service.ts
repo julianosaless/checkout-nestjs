@@ -1,5 +1,4 @@
 import { Inject, Injectable } from "@nestjs/common";
-import { promises } from "fs";
 import { Cart } from "src/domain/carts/cart";
 import { CartProduct } from "src/domain/carts/cart-product";
 
@@ -31,11 +30,12 @@ export class CartService {
 
       cart.add(new CartProduct(cart.id, product, cartProduct.quantity));
       cart.products.forEach(async (item) => {
+        await this.repository.deleteAll(cart.productToDeletes);
         await this.repository.cartProductRepository.insert(item);
       });
       await this.repository.update(cart.id, cart);
     });
-    return await this.createCartResult(cart);
+    return await this.createCartResult(await this.repository.findDefault());
   }
 
   public async removeProduct(id: string): Promise<void> {
@@ -60,11 +60,12 @@ export class CartService {
           cartProduct.product.name,
           cartProduct.quantity,
           cartProduct.price,
-          2
+          (cartProduct.price * cartProduct.quantity)
         );
       currentCartProduct.addPromotion("", "");
       currentCart.products.push(currentCartProduct);
     });
+    currentCart.total = currentCart.products.reduce((a, b) => a + b.total, 0);
     return currentCart;
   }
 }
