@@ -13,7 +13,10 @@ export class Cart extends EntityBase implements IAggregateRoot {
   private cartProducts: CartProduct[];
 
   public get products(): CartProduct[] {
-    return this.cartProducts;
+    if (!this.cartProducts) {
+      this.cartProducts = [];
+    }
+    return this.cartProducts ? this.cartProducts : [];
   }
 
   public get totalCost(): number {
@@ -29,7 +32,6 @@ export class Cart extends EntityBase implements IAggregateRoot {
   public add(cartProduct: CartProduct): void {
     if (cartProduct == null) return;
     this.mergeProduct(cartProduct);
-    this.cartProducts.push(cartProduct);
   }
 
   public remove(productId: string): void {
@@ -38,7 +40,7 @@ export class Cart extends EntityBase implements IAggregateRoot {
   }
 
   private mergeProduct(cartProduct: CartProduct): void {
-    const products = this.cartProducts
+    const products = this.products
       .filter((product) => product.productId === cartProduct.productId);
 
     if (products && products.length > 0) {
@@ -47,5 +49,6 @@ export class Cart extends EntityBase implements IAggregateRoot {
 
       products.forEach((product) => this.remove(product.productId));
     }
+    this.products.push(cartProduct);
   }
 }

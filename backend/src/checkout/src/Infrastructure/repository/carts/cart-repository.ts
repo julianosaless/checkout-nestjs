@@ -10,12 +10,11 @@ import { CartProduct } from "src/domain/carts/cart-product";
 @Injectable()
 export class CartRepository extends BaseRepository<Cart>{
 
-
   constructor(
     @InjectRepository(Cart)
     private readonly cartRepository: Repository<Cart>,
     @InjectRepository(CartProduct)
-    private readonly cartProductRepository: Repository<CartProduct>) {
+    public readonly cartProductRepository: Repository<CartProduct>) {
     super(cartRepository);
   }
 
@@ -24,4 +23,16 @@ export class CartRepository extends BaseRepository<Cart>{
     if (!currentProduct) return;
     await this.cartProductRepository.delete(currentProduct.id)
   }
-}
+
+  public async findAll(): Promise<Cart[]> {
+    return await this.repository.find({ relations: ['cartProducts'] });
+  }
+
+  public async findDefault(): Promise<Cart> {
+    var defaultCart = (await this.repository.find())[0];
+    if (!defaultCart) return;
+
+    const cart = await this.repository.findOne(defaultCart.id, { relations: ['cartProducts', 'cartProducts.product'] });
+    return cart;
+  }
+} 

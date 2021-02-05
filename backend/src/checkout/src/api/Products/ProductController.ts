@@ -25,6 +25,12 @@ export class ProductController {
       .getCurrentCart();
   }
 
+  @Post("carts")
+  @HttpCode(201)
+  public async saveCarts(@Body() cart: CartDto): Promise<CartDto> {
+    return await this.cartService.add(cart.products);
+  }
+
   @Get(':id')
   @HttpCode(200)
   async getBy(@Param('id') id: string): Promise<ProductDto> {
@@ -50,5 +56,6 @@ export class ProductController {
   async post(@Body() cart: CartDto): Promise<CartDto> {
     return await this.cartService.add(cart.products)
   }
+
 
 }

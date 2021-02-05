@@ -18,4 +18,5 @@ export class ProductRepository extends BaseRepository<Product>{
     super(productRepository);
     this.promotionRepository = promotionRepository;
   }
+
 }

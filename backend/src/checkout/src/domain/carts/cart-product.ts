@@ -1,4 +1,4 @@
-import { Column, Entity, ManyToOne } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne } from "typeorm";
 
 import { EntityBase } from "src/common/domain/entity-base";
 import { Product } from "../products/product";
@@ -14,9 +14,13 @@ export class CartProduct extends EntityBase {
   readonly quantity: number;
   @Column()
   readonly productId: string;
+
+  @ManyToOne(type => Product, { nullable: false })
+  @JoinColumn()
+  product: Product;
+
   @Column()
   readonly price: number;
-  readonly product: Product;
 
 
   constructor(cartId: string, product: Product, quantity: number) {
