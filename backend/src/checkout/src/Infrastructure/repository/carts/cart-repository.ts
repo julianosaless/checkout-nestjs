@@ -32,7 +32,13 @@ export class CartRepository extends BaseRepository<Cart>{
     var defaultCart = (await this.repository.find())[0];
     if (!defaultCart) return;
 
-    const cart = await this.repository.findOne(defaultCart.id, { relations: ['cartProducts', 'cartProducts.product'] });
+    const cart = await this.repository.findOne(defaultCart.id, { relations: ['cartProducts', 'cartProducts.product', 'cartProducts.product.promotion'] });
     return cart;
+  }
+
+  public async deleteAll(cartProduct: CartProduct[]): Promise<void> {
+    cartProduct.forEach(async (product) => {
+      await this.cartProductRepository.delete(product.id)
+    });
   }
 } 
