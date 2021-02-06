@@ -16,13 +16,6 @@ docker-compose up
 user: root
 password: checkout
 ```
-#### Adminer Panel
-```
-System: MS SQL
-Server: db
-Username: sa
-password: DB_password@123
-```
 ### Available urls
 * [Frontend](http://localhost:4200)
 * [Backend](http://localhost:5000/swagger/index.html)
