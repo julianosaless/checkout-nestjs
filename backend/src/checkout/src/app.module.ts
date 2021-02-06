@@ -16,7 +16,7 @@ import { Cart } from './domain/carts/cart';
     username: process.env.TYPEORM_USERNAME,
     password: process.env.TYPEORM_PASSWORD,
     synchronize: true,
-    logging: true
+    logging: true,
     entities: [Product, Promotion, Cart, CartProduct]
   }),
     InfrastructureModule,
