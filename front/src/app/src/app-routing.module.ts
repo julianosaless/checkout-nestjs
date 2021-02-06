@@ -8,7 +8,7 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: () =>
-          import('./components/Index/index.module').then((m) => m.IndexModule),
+          import('./components/index/index.module').then((m) => m.IndexModule),
       },
       {
         path: '',

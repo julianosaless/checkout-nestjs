@@ -32,7 +32,12 @@ export class CartRepository extends BaseRepository<Cart>{
     var defaultCart = (await this.repository.find())[0];
     if (!defaultCart) return;
 
-    const cart = await this.repository.findOne(defaultCart.id, { relations: ['cartProducts', 'cartProducts.product', 'cartProducts.product.promotion'] });
+    const cart = await this.repository.findOne(defaultCart.id, {
+      relations: ['cartProducts', 'cartProducts.product', 'cartProducts.product.promotion'],
+      order: {
+        products: 'ASC',
+      },
+    });
     return cart;
   }
 

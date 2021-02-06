@@ -64,6 +64,7 @@ export class CartService {
       const discount = this.promotionDiscountService.createDiscount(cartProduct);
       const currentCartProduct = new CartProductDto
         (
+          cartProduct.id,
           cartProduct.productId,
           cartProduct.product.name,
           cartProduct.quantity,

@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { ProductModule } from './components/product/product.module';
-import { IndexModule } from './components/Index/index.module';
+import { IndexModule } from './components/index/index.module';
 
 @NgModule({
   declarations: [AppComponent],

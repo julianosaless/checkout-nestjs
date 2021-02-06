@@ -11,7 +11,7 @@ import Promotion from '../models/promotion';
 export class ProductService {
 
   // needs change to use a service
-  private url = 'http://localhost:3000/api/products';
+  private url = 'http://localhost:5000/api/products';
 
   constructor(
     private http: HttpClient
